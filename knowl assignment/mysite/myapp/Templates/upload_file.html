@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Portal</title>
+</head>
+<body>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file">Select file to upload:</label>
+    <input type="file" id="file" name="file">
+    <button type="submit">Upload</button>
+</form>
+
+# file_list.html
+
+<h1>Uploaded Files</h1>
+<ul>
+    {% for uploaded_file in uploaded_files %}
+        <li>
+            <a href="{% url 'download_file' uploaded_file.pk %}">{{ uploaded_file.filename }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
